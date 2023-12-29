@@ -7,7 +7,10 @@
     "build": "node ace build --production",
     "start": "node server.js",
     "test": "node ace test",
-    "lint": "eslint . --ext=.ts"
+    "lint": "eslint . --ext=.ts",
+    "dockerAttach": "docker exec -it adonis_app /bin/sh",
+    "dockerAttachRedis": "docker exec -it redis /bin/sh",
+    "dockerAttachPostgres": "docker exec -it postgres /bin/sh"
   },
   "eslintConfig": {
     "extends": [
@@ -33,7 +36,11 @@
   },
   "dependencies": {
     "@adonisjs/core": "^5.9.0",
+    "@adonisjs/lucid": "^18.4.2",
     "@adonisjs/repl": "^3.1.11",
+    "@hipsjs/adonis-lucid-uuid": "^1.0.1",
+    "luxon": "^3.4.4",
+    "pg": "^8.11.3",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.2.1",
     "source-map-support": "^0.5.21"
