@@ -21,12 +21,12 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-	Route.get('/', 'AuthController.index')
-	// Route.post('register', 'AuthController.register')
+	Route.get('', 'AuthController.index')
+	Route.post('register', 'AuthController.register')
 	// Route.post('login', 'AuthController.login')
 	// Route.get('logout', 'AuthController.logout')
   	// nice to have OAuth2
 	// Route.post('o-auth-login', 'AuthController.oAuthLogin')
 })
-.prefix('api/v1')
+.prefix('api/v1/')
 // .middleware('globalparam')
