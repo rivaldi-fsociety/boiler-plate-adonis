@@ -2,11 +2,12 @@ version: '3.8'
 
 services:
   postgres:
+    restart: always
     container_name: postgres
     image: postgres:13
     volumes:
       - postgres_volume:/var/lib/postgresql/data
-      - ./dockerConfig/postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql # will setup dev database adonis_app for us
+      # - ./dockerConfig/postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql # will setup dev database adonis_app for us
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -29,7 +30,8 @@ services:
       - redis
     build:
       context: .
-      target: dependencies
+      # target: dependencies
+      target: dev
     ports:
       - ${PORT}:${PORT}
       - 9229:9229
@@ -39,8 +41,10 @@ services:
       - PG_HOST=postgres
       - REDIS_HOST=redis
     volumes:
-      - ./:/home/node/app
-    command: dumb-init node ace serve --watch --node-args="--inspect=0.0.0.0"
+      # - ./:/home/node/app
+      - "./:/usr/src/app/"
+      - "/usr/src/app/node_modules"
+    # command: dumb-init node ace serve --watch --node-args="--inspect=0.0.0.0"
 
 volumes:
   postgres_volume:
