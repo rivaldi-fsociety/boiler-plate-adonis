@@ -3,6 +3,7 @@ import { BaseModel, column, beforeCreate, belongsTo, BelongsTo, beforeSave } fro
 import { v4 as uuidv4 } from "uuid";
 import Account from './Account';
 import Hash from '@ioc:Adonis/Core/Hash'
+import Role from './Role';
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -46,6 +47,12 @@ export default class User extends BaseModel {
 
   @column.dateTime()
   public deleted_at: DateTime
+
+  @column({ columnName: 'roleId' })
+  public roleId: number
+
+  @belongsTo(() => Role)
+  public role: BelongsTo<typeof Role>
 
   @beforeCreate()
   public static async addUidHook(user: User) {
