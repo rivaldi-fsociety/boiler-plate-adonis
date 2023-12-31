@@ -27,6 +27,9 @@ Route.group(() => {
 	// Route.get('logout', 'AuthController.logout')
   	// nice to have OAuth2
 	// Route.post('o-auth-login', 'AuthController.oAuthLogin')
+
+	Route.get('/role','RolesController.index') /** Read Roles */
+	Route.post('/role','RolesController.store') /** Create Roles */
 })
 .prefix('api/v1/')
 // .middleware('globalparam')
